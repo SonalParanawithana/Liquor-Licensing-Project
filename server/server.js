@@ -341,6 +341,30 @@ try{
   }
 })
 
+app.get("/api/application/:id", async (req, res) => {
+  console.log(req.params);
+  const { id } = req.params;
+
+  const sql = `SELECT * FROM application WHERE application_id = ?`;
+
+  try {
+    const application = await new Promise((resolve, reject) => {
+      db.query(sql, [id], (err, result) => {
+        if (err) {
+          reject(new Error(err.message));
+        }
+        resolve(result);
+      });
+    });
+
+    res.status(200).json(application);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: "Invalid credentials" });
+    throw new Error(err);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

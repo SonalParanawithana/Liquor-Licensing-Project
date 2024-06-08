@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../index';
 import { base_url } from '../../utils/urls';
+import {Link} from 'react-router-dom';
 
 const InspectorDashboard = () => {
   const [applications, setApplications] = useState([]);
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  
 
   useEffect(() => {
     fetchApplications();
@@ -80,7 +83,12 @@ const InspectorDashboard = () => {
                   <td>{app.dateSubmitted}</td>
                   <td >{app.inspector_status}</td>
                   <td>
-                    <button onClick={() => handleViewDetails(app)}>View Details</button>
+                   <Link
+                   to={`/inspector/application/${app.application_id}`}
+                   >
+                   
+                   <button >View Details</button>
+                   </Link> 
                   </td>
                   
                 </tr>

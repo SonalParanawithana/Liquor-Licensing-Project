@@ -30,7 +30,7 @@ function App() {
 
         <Route path="/inspector" element={<InspectorMainLayout />} >
           <Route index element={<InspectorDashboard />} />
-          <Route path="applied-list" element={<InspectApplication />} />
+          <Route path= "application/:id" element={<InspectApplication />} />
         </Route>
 
 
